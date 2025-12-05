@@ -27,7 +27,7 @@ def overlapping(r1: list[int], r2: list[int]) -> list[list[int]]:
 # first parse input
 ranges = []
 fresh = []
-for line in input():
+for line in input(1):
     t =  line.split('-')
     if len(t) == 2:
         # this is a range

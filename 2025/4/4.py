@@ -3,7 +3,7 @@ from aoc import input
 
 # build matrix
 m = []
-for line in input():
+for line in input(1):
     m.append(line)
 
 height = len(m)
@@ -35,6 +35,8 @@ def check_cell(m: list[list[str]], height: int, width: int) -> int:
     return free
     
 
+a = False
+
 total_free = 0
 while True:
     start = total_free
@@ -52,11 +54,13 @@ while True:
                 t = m[i][:j] + '.' 
                 if j <= width: 
                     t += m[i][j+1:]
-                m[i] = t
+                if not a:
+                    m[i] = t
                 
                 print(f'new: {m[i]}')
                 
                 
     print(f'found: {total_free}')
-    if start == total_free:
+    if start == total_free or a:
         break;
+    
