@@ -15,3 +15,7 @@ def input(test: bool = False) -> list:
 		for line in file:
 			ret.append(line.strip())
 	return ret
+
+
+def str_replace(string: str, index: int, replace: str) -> str:
+	return string[0:index] + replace + string[index+1:]

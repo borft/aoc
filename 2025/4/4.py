@@ -3,7 +3,7 @@ from aoc import input
 
 # build matrix
 m = []
-for line in input(1):
+for line in input():
     m.append(line)
 
 height = len(m)
