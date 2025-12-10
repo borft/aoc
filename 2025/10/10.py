@@ -30,7 +30,7 @@ print(joltages)
 
 count = len(lights)
 
-def get_combos(options: list[list[object]], combos: list[list[list]]) -> list[list]:
+def get_combos(options: list[list[object]], combos: list[list[list]]) -> list[list[list]]:
     ret = []
     for o in options:
         for c in combos:
