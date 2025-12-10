@@ -30,7 +30,7 @@ print(joltages)
 
 count = len(lights)
 
-def get_combos(options, combos):
+def get_combos(options: list[list[object]], combos: list[list[list]]) -> list[list]:
     ret = []
     for o in options:
         for c in combos:
@@ -64,12 +64,12 @@ for i in range(0, count):
 
     print(f'trying {i} / {len(button)}')
 
-    combinations = []
+    combinations: list[list] = []
 
-    for b in button:
+    for bt in button:
         options = []
         for j in [0,1]:
-            options.append([b,j])
+            options.append([bt,j])
         if len(combinations) == 0:
             combinations = [[o] for o in options]
         else:
