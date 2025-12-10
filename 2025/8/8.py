@@ -62,16 +62,18 @@ def check_overlap(cs: list):
   total = 0
   for r in result:
     total += len(r)
-  if total != 1000:
-    print(f'WRONG!! --> {total}')
-    print(result)
-    exit(1)
-  
+#   if total != 1000:
+#     print(f'WRONG!! --> {total}')
+#     print(result)
+#     exit(1)
+#   
   return result
 
 
 # 10 max
 circuits = [[c] for c in list(index.keys())]
+
+ledger = []
 
 i = 0
 for b in sorted_keys:
@@ -81,12 +83,15 @@ for b in sorted_keys:
     if b[0] in c or b[1] in c:
       if b[0] not in c:
         c.append(b[0])
+        ledger.append(b[0])
       if b[1] not in c:
         c.append(b[1])
+        ledger.append(b[1])
       circuits = check_overlap(circuits)
 
   i += 1
-  if i == 1001:
+  #if i == 1001:
+  if len(circuits) == 1:
     break
 
 #print(sorted_keys)
@@ -98,6 +103,9 @@ print(f'total: {sum([len(c) for c in circuits])}')
 top3 = sorted([len(c) for c in circuits], reverse=True)[:3]
 
 print(f'top: {top3} // {prod(top3)}')
+
+xs = [int(l.split('_')[0]) for l in ledger[-2:]]
+print(prod(xs))
 
 # for c in circuits:
 #   print(len(c))
