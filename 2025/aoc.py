@@ -13,7 +13,7 @@ def input(test: bool = False) -> list:
 	ret = []
 	with open(filename, 'r') as file:
 		for line in file:
-			ret.append(line.strip())
+			ret.append(line.rstrip('\n'))
 	return ret
 
 
