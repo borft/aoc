@@ -2,7 +2,7 @@ from aoc import input, str_replace
 
 
 splits = 0
-data = input(1)
+data = input()
 height = len(data)
 width = len(data[0])
 
@@ -27,8 +27,40 @@ for h in range(0, height):
         data[h] = str_replace(data[h], w+1, '|')
 
 
-print(f'found: {splits}')
+print(f'found part 1: {splits}')
 
 
+matrix: list[list] = []
 for d in data:
-  print(d)
+  matrix.append(list(d))
+
+for x in range(0, width):
+  cell = matrix[1][x]
+  if cell == '|':
+    matrix[1][x] = 1
+
+for y in range(2, height):
+  for x in range(0, width):
+    cell = matrix[y][x]
+    
+    value = 0
+    
+    if cell == '|':
+      # cell directly above
+      above = matrix[y-1][x]
+      if above != '.':
+        value += above 
+      
+      # check split before 
+      if x > 0 and matrix[y][x-1] == '^' and matrix[y-1][x-1] != '.':
+        value += matrix[y-1][x-1]
+
+      # check split after
+      if x < width -1 and matrix[y][x+1] == '^' and matrix[y-1][x+1] != '.':
+        value += matrix[y-1][x+1]
+
+      # overwrite with new value
+      matrix[y][x] = value
+    
+total = sum([d for d in matrix[height-1] if isinstance(d, int)])
+print(f'total part 2: {total}')
